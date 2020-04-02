@@ -1,6 +1,6 @@
 import sys
 import urllib.request
-
+import traceback
 from datetime import datetime
 
 
@@ -40,6 +40,7 @@ def main():
                         i = i + 1
                     except:
                        print(provincestate , countryregion,  lastupdate,  latitude, longitude,  confirmed,  deaths , recovered)
+                       traceback.print_exc()
 
     print("done records added = ", i)
     

@@ -1,10 +1,9 @@
 import sys
 import urllib.request
-
+import traceback
 from datetime import datetime
 
 
-# file = '/Users/walkerrowe/Downloads/03-24-2020.csv'
 
 def main():
     
@@ -26,11 +25,11 @@ def main():
             else:
 
                 l = x.split(",") 
-               
-                try: 
+
+                try:               
                     fips = l[0]  
                     admin2 = l[1]  
-                    state = l[2]   
+                    state = l[2]
                     country= l[3]   
                     last_update = datetime.strptime(l[4], '%Y-%m-%d %H:%M:%S')
                     lat = l[5] 
@@ -40,9 +39,13 @@ def main():
                     recovered = l[9]
                     active = l[10]
                     combined_key = l[11]
+                    if state == 'South Carolina':
+                        print(fips ,  admin2 , "state=",state,   country,   last_update,  lat,  long , confirmed , deaths , recovered , active ,   combined_key)
                     i = i + 1
+                    ps(fips ,  admin2 , state,   country,   last_update,  lat,  long , confirmed , deaths , recovered , active ,   combined_key)
                 except:
-                    print(fips ,  admin2 , state,   country,   last_update,  lat,  long , confirmed , deaths , recovered , active ,   combined_key)
+                    print(fips ,  admin2 , "state=",state,   country,   last_update,  lat,  long , confirmed , deaths , recovered , active ,   combined_key)
+                    traceback.print_exc()
 
     print("done records added = ", i)
     
